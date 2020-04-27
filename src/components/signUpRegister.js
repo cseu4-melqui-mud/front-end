@@ -101,17 +101,16 @@ export default function SignInSide() {
   const handleSubmit = e => {
     e.preventDefault()
     if(signUpToggle) {
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/registration`, formValues)
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/registration/`, formValues)
     } else {
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, formValues) 
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/login/`, formValues) 
         .then((res) => {
             console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
         })
-    }
-     
+    } 
 }
 
 const handleChange = (e) => {  
