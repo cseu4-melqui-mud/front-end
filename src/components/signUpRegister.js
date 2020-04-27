@@ -66,19 +66,34 @@ export default function SignInSide() {
 
   const [signUpToggle, setSignUpToggle] = useState(false);
   const [formValues, setFormValues] = useState({
-      username: "",
-      password: "",
-      email: "",
+    username: "",
+    password: "",
+    password1: "",
+    password2: "",
   })
+
+  let axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    }
+  };
 
   const handleSubmit = e => {
     e.preventDefault()
     if(signUpToggle) {
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/registration`, formValues)
-    } else {
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, formValues) 
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/registration/`, formValues, axiosConfig)
         .then((res) => {
-            console.log(res.data);
+          localStorage.setItem('key', res.data.key)
+          console.log(res.data.key);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    } else {
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/login/`, formValues, axiosConfig) 
+        .then((res) => {
+            localStorage.setItem('key', res.data.key)
+            console.log(res.data.key);
         })
         .catch((err) => {
             console.log(err);
@@ -107,50 +122,70 @@ const handleChange = (e) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
+          {signUpToggle ?
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign Up
+          </Typography> : <Typography component="h1" variant="h5">
+              Sign In
           </Typography>
+          }
+  
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          {signUpToggle ? (
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="username"
+              value={formValues.username}
+              onChange={handleChange}
+              label="Username"
+              type="name"
+              id="username"
+            />
+            {signUpToggle ? (
+              <div>
               <TextField
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                name="username"
-                value={formValues.username}
+                name="password1"
+                label="Password1"
+                type="password1"
+                value={formValues.password1}
                 onChange={handleChange}
-                label="Username"
-                type="name"
-                id="username"
+                id="password1"
+                autoComplete="current-password"
               />
-            ) : null}
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              value={formValues.email}
-              onChange={handleChange}
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              value={formValues.password}
-              onChange={handleChange}
-              id="password"
-              autoComplete="current-password"
-            />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password2"
+                label="Password2"
+                type="password2"
+                value={formValues.password2}
+                onChange={handleChange}
+                id="password2"
+                autoComplete="current-password"
+                />
+              </div>
+            ) : <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                value={formValues.password}
+                onChange={handleChange}
+                id="password"
+                autoComplete="current-password"
+              />}
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
