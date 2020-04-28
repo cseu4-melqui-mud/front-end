@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # front-end
 KIll Me now
 =======
@@ -70,4 +70,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
->>>>>>> 196661b5b000ff10477da97123223c2f5394e3a4
+
