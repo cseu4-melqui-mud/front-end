@@ -26,11 +26,12 @@
 .game-window {
   background-color: #0829e6;
   height: 600px;
-  width: 70vw;
+  width: 60vw;
+  
 }
 
 .room-info, .controls {
-  width: 35vw;
+  width: 30vw;
   height: 300px;
   background-color: black;
 }

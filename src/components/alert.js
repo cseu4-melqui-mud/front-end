@@ -5,6 +5,7 @@ import Alert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '30%',
+    margin: "200px 0 0 0",
     position: "absolute",
     '& > * + *': {
       marginTop: theme.spacing(2),
@@ -17,7 +18,7 @@ export default function SimpleAlerts() {
 
   return (
     <div className={classes.root}>
-      <Alert severity="error">Move not possible</Alert>
+      <Alert className="alert" severity="error">Move not possible</Alert>
     </div>
   );
 }
