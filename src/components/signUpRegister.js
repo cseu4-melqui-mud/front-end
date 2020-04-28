@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -145,16 +144,14 @@ const handleChange = (e) => {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
           {signUpToggle ?
-          <Typography component="h1" variant="h5">
+          <Typography color="primary" component="h1" variant="h5">
             Sign Up
-          </Typography> : <Typography component="h1" variant="h5">
+          </Typography> : <Typography color="primary" component="h1" variant="h5">
               Sign In
           </Typography>
           }
+        <ThemeProvider theme={theme}>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
