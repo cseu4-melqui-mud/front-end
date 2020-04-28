@@ -60,14 +60,17 @@
 
 .down-arrow {
   transform: rotate(90deg);
+  text-align: center;
 }
 
 .up-arrow {
   transform: rotate(270deg);
+  text-align: center;
 }
 
 .arrow-pad {
   margin-top: 30px;
+  text-align: center;
 }
 
 .tile-map {
