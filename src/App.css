@@ -4,10 +4,69 @@
 }
 
 .sign-up-text {
-  color: #3f51b5;
+  color: #0829e6;
 }
 
 .sign-up-text:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.game p {
+  color: white;
+}
+
+.game-window {
+  background-color: #0829e6;
+  height: 600px;
+  width: 70vw;
+}
+
+.room-info, .controls {
+  width: 35vw;
+  height: 300px;
+  background-color: black;
+}
+
+.room-info {
+  border-right: 1px solid white;
+}
+
+.bottom-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.middle-arrows {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.arrow-key {
+  margin: 30px 50px 30px 50px;
+}
+
+.arrow-key:first-child {
+  transform: rotate(180deg);
+}
+
+.down-arrow {
+  transform: rotate(90deg);
+}
+
+.up-arrow {
+  transform: rotate(270deg);
+}
+
+.arrow-pad {
+  margin-top: 30px;
 }

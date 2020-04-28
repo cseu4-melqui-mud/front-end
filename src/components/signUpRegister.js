@@ -12,7 +12,34 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import axios from "axios"
+
+const colorMain = "#0829e6"
+
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        // light: will be calculated from palette.primary.main,
+        main: colorMain,
+        // dark: will be calculated from palette.primary.main,
+        // contrastText: will be calculated to contrast with palette.primary.main
+      },
+      secondary: {
+        light: '#0066ff',
+        main: '#0044ff',
+        // dark: will be calculated from palette.secondary.main,
+        contrastText: '#ffcc00',
+      },
+      // Used by `getContrastText()` to maximize the contrast between
+      // the background and the text.
+      contrastThreshold: 3,
+      // Used by the functions below to shift a color's luminance by approximately
+      // two indexes within its tonal palette.
+      // E.g., shift from Red 500 to Red 300 or Red 700.
+      tonalOffset: 0.2,
+    },
+  });
 
 function Copyright() {
   return (
@@ -98,8 +125,7 @@ export default function SignInSide() {
         .catch((err) => {
             console.log(err);
         })
-    }
-     
+    } 
 }
 
 const handleChange = (e) => {  
@@ -129,7 +155,6 @@ const handleChange = (e) => {
               Sign In
           </Typography>
           }
-  
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
@@ -215,8 +240,10 @@ const handleChange = (e) => {
               <Copyright />
             </Box>
           </form>
+          </ThemeProvider>
         </div>
       </Grid>
     </Grid>
+    
   );
 }
