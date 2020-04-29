@@ -25,9 +25,9 @@
 
 .game-window {
   background-color: #0829e6;
-  height: 600px;
+  max-height: 700px;
   width: 60vw;
-  
+  overflow-y: auto;
 }
 
 .room-info, .controls {
@@ -38,6 +38,10 @@
 
 .room-info {
   border-right: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .bottom-row {
@@ -74,6 +78,36 @@
   text-align: center;
 }
 
-.tile-map {
+.map {
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2% 5% 0% 5%;
+}
+
+.two-field {
+  width: 14.2%;
+  height: 5%;
+}
+
+.zero-field, .one-field, .player{
+  width: 7.1%;
+  height: 5%;
+}
+
+.game-title {
+  color: white;
+  text-align: center;
+}
+
+.game-description {
+  width: 90%;
+  text-align: center;
+}
+
+.room-info-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
