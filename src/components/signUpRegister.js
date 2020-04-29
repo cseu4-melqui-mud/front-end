@@ -236,6 +236,7 @@ const handleChange = (e) => {
               <Copyright />
             </Box>
           </form>
+        </ThemeProvider>
         </div>
       </Grid>
     </Grid>
