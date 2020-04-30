@@ -175,7 +175,7 @@ const handleChange = (e) => {
                 fullWidth
                 name="password1"
                 label="Password1"
-                type="password1"
+                type="password"
                 value={formValues.password1}
                 onChange={handleChange}
                 id="password1"
@@ -188,7 +188,7 @@ const handleChange = (e) => {
                 fullWidth
                 name="password2"
                 label="Password2"
-                type="password2"
+                type="password"
                 value={formValues.password2}
                 onChange={handleChange}
                 id="password2"
