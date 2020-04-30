@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import axios from "axios"
-import AboutButton from "./button"
+import {AboutButton} from "./button"
 
 const colorMain = "#0829e6"
 

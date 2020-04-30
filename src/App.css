@@ -13,10 +13,19 @@
 
 .game {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  min-height: 100vh;
+}
+
+html {
+  background: url("https://i.imgur.com/Kx7N0dG.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .game p {
@@ -25,20 +34,22 @@
 
 .game-window {
   background-color: #0829e6;
-  max-height: 700px;
+  max-height: 1000px;
   min-height: 400px;
-  width: 60vw;
+  width: 45vw;
   overflow-y: auto;
 }
 
 .room-info, .controls {
   width: 30vw;
-  height: 300px;
+  height: 440px;
   background-color: black;
+  border-left: 1px solid white;
 }
 
 .room-info {
-  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +58,8 @@
 
 .bottom-row {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  max-height: 1000px;
 }
 
 .middle-arrows {
@@ -67,6 +79,7 @@
 .down-arrow {
   transform: rotate(90deg);
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .up-arrow {
@@ -75,7 +88,7 @@
 }
 
 .arrow-pad {
-  margin-top: 30px;
+  margin-top: 90px;
   text-align: center;
 }
 
@@ -146,6 +159,7 @@
 
 #team-h1 {
   margin-top: 5%;
+  color: white;
 }
 
 #team-h1 a {
@@ -157,12 +171,40 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 .team-members {
-  width: 40vw;
+  width: 22vw;
+  margin-right: 10vw;
+  margin-left: 10vw;
+  background-color: white;
+  padding: 20px;
+  margin-top: 50px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.member-desc {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.team-members p {
+  font-size: 1.5rem;
+}
+
+.team-members a {
+  text-decoration: none;
 }
 
 .player {
   background-color: red;
+}
+
+.logout-button {
+  float: right;
 }

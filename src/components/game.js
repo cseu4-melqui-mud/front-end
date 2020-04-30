@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Alert from "./alert.js";
 import Loader from "./loader"
+import {LogoutButton} from "./button"
 /*https://i.imgur.com/JKiAwtK.png https://i.imgur.com/Q5oyTpz.png */
-function Game() {
+function Game(props) {
   const [error, setError] = useState(false);
   const [gameData, setGameData] = useState({})
   const [loading, setLoading] = useState(false)
@@ -76,6 +77,7 @@ function Game() {
         console.log(err.message);
       });
   }, []);
+
 
   const move = (e) => {
     e.preventDefault();
@@ -177,6 +179,7 @@ function Game() {
               className="down-arrow"
             />
           </div>
+          <LogoutButton />
         </div>
       </div>
     </div>
