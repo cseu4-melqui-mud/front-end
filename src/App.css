@@ -24,7 +24,7 @@
 }
 
 .game-window {
-  background-color: #0829e6;
+  background-color: white;
   max-height: 700px;
   min-height: 400px;
   width: 60vw;
@@ -86,20 +86,23 @@
   margin: 2% 5% 0% 5%;
 }
 
-.two-field {
-  width: 7.1%;
-  /*14.2*/
-  height: 5%;
+.room {
+  position: relative;
+  width: calc(100% / 14);
+  font-size: 0;
+  line-height: 0;
+}
+.room img:not(:first-child) {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
-.three-field {
-  width: 7.1%;
-  height: 10%;
-}
-
-.zero-field, .one-field {
-  width: 7.1%;
-  height: 5%;
+.room .dir {
+  z-index: 2;
 }
 
 .game-title {
