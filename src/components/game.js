@@ -100,7 +100,7 @@ function Game() {
       <div className="game-window">
       {loadingMap ? <Loader size="6rem"/> :
         <div className="map">
-         {mapRooms.map((row, index) => {
+        {mapRooms.map((row, index) => {
            return row.map((room, i2) => {
             if (roomData[room] === 0) {
                 return(<div key={`${index}_${i2}`} className="zero-field"></div>)

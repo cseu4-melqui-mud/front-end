@@ -97,7 +97,7 @@
   height: 10%;
 }
 
-.zero-field, .one-field, .player{
+.zero-field, .one-field {
   width: 7.1%;
   height: 5%;
 }
@@ -162,4 +162,7 @@
 .team-members {
   width: 40vw;
 }
-/*Zeit rebuild*/
+
+.player {
+  background-color: red;
+}
