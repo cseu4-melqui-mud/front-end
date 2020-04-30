@@ -26,6 +26,7 @@
 .game-window {
   background-color: #0829e6;
   max-height: 700px;
+  min-height: 400px;
   width: 60vw;
   overflow-y: auto;
 }
@@ -86,11 +87,17 @@
 }
 
 .two-field {
-  width: 14.2%;
+  width: 7.1%;
+  /*14.2*/
   height: 5%;
 }
 
-.zero-field, .one-field, .player{
+.three-field {
+  width: 7.1%;
+  height: 10%;
+}
+
+.zero-field, .one-field {
   width: 7.1%;
   height: 5%;
 }
@@ -112,4 +119,50 @@
   align-items: center;
 }
 
-/*Zeit rebuild*/
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about h2 {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.avatar-box {
+  width: 30vw;
+  border: 1px solid black;
+  height: 300px;
+  margin-right: 5vw;
+  margin-left: 5vw;
+}
+
+.avatar-container {
+  display: flex;
+
+}
+
+#team-h1 {
+  margin-top: 5%;
+}
+
+#team-h1 a {
+    color: red;
+    text-decoration: none;
+}
+
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-members {
+  width: 40vw;
+}
+
+.player {
+  background-color: red;
+}

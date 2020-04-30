@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import axios from "axios"
+import AboutButton from "./button"
 
 const colorMain = "#0829e6"
 
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignInSide(props) {
   const classes = useStyles();
 
   const [signUpToggle, setSignUpToggle] = useState(false);
@@ -107,9 +108,10 @@ export default function SignInSide() {
   const handleSubmit = e => {
     e.preventDefault()
     if(signUpToggle) {
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}/registration/`, formValues, axiosConfig)
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/registration/`, {username: formValues.username, password1: formValues.password1, password2: formValues.password2}, axiosConfig)
         .then((res) => {
-          localStorage.setItem('key', res.data.key)
+          localStorage.setItem('token', res.data.key)
+          window.location.reload()
         })
         .catch((err) => {
           console.log(err);
@@ -117,8 +119,8 @@ export default function SignInSide() {
     } else {
       axios.post(`${process.env.REACT_APP_BACKEND_URL}/login/`, formValues, axiosConfig) 
         .then((res) => {
-            localStorage.setItem('key', res.data.key)
-            console.log(res.data.key);
+            localStorage.setItem('token', res.data.key)
+            window.location.reload()
         })
         .catch((err) => {
             console.log(err);
@@ -237,6 +239,7 @@ const handleChange = (e) => {
             </Box>
           </form>
         </ThemeProvider>
+        <AboutButton />
         </div>
       </Grid>
     </Grid>
