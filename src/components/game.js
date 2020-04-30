@@ -10,6 +10,7 @@ function Game() {
   const [loadingMap, setLoadingMap] = useState(false)
   const [mapData, setMapData] = useState([])
   const [roomData, setRoomData] = useState({})
+  const [roomInfo, setRoomInfo] = useState({})
   const [mapRooms, setMapRooms] = useState([])
   let mapDataX = []
     
@@ -42,8 +43,11 @@ function Game() {
       .get(`${process.env.REACT_APP_BACKEND_URL}/adv/rooms/`, axiosConfig)
       .then((res) => {
         let tempObj = {}
+        
+        let roomsInfo = {}
         res.data.rooms.forEach((curr) => {
           tempObj[curr.id] = curr.room_type
+          roomsInfo[curr.id] = curr
         })
         console.log(tempObj, "TEMP");
         res.data.map.forEach((row) => {
@@ -52,6 +56,7 @@ function Game() {
           })
         })
         setRoomData(tempObj)
+        setRoomInfo(roomsInfo)
         setLoadingMap(false)
         console.log(mapDataX, "MAPDATAX");
         setMapData(mapDataX)
@@ -75,9 +80,8 @@ function Game() {
   const move = (e) => {
     e.preventDefault();
     setLoading(true)
+    console.log("mapRoom", mapRooms);
     let direction = e.target.name;
-    let possibleMoves = ["n", "s", "w", "e"];
-    if (possibleMoves.includes(direction)) {
       axios.post(`${process.env.REACT_APP_BACKEND_URL}/adv/move/`, {direction: direction}, axiosConfig)
       .then((res) => {
         setGameData(res.data)
@@ -85,15 +89,17 @@ function Game() {
       })
       .catch((err) => {
         console.log(err.message);
-      })
-    } else {
-      setError(true);
-      setTimeout(() => {
+        setLoading(false)
+        setError(true);
+        setTimeout(() => {
         setError(false);
       }, 3000);
-    }
+      }) 
   };
-
+  
+  if(!gameData.room || Object.keys(roomInfo).length === 0) {
+    return null
+  }
   return (
     <div className="game">
       {error ? <Alert /> : null}
@@ -108,9 +114,9 @@ function Game() {
                 return(<div key={`${index}_${i2}`} className={`one-field ${(gameData.room.id === room ? " player" : '')}`}><img src="https://image.flaticon.com/icons/svg/1852/1852661.svg" alt="ss" width="95%"/></div>)
                
             } else if (roomData[room] === 2) {
-                return(<div key={`${index}_${i2}`} className={`two-field ${(gameData.room.id === room ? " player" : '')}`}><img src="https://image.flaticon.com/icons/svg/752/752665.svg" alt="ss" width="95%"/></div>)
+                return(<div key={`${index}_${i2}`} className={`two-field ${(gameData.room.id === room ? " player" : '')}`}><img src="https://image.flaticon.com/icons/svg/1852/1852690.svg" alt="ss" width="95%"/></div>)
             } else if(roomData[room] === 3) {
-                return(<div key={`${index}_${i2}`} className={`three-field ${(gameData.room.id === room ? " player" : '')}`}><img src="https://image.flaticon.com/icons/svg/183/183360.svg" alt="ss" width="95%"/></div>)
+                return(<div key={`${index}_${i2}`} className={`three-field ${(gameData.room.id === room ? " player" : '')}`}><img src="https://image.flaticon.com/icons/png/512/1696/1696386.png" alt="ss" width="95%"/></div>)
             }
         })
       })
@@ -124,9 +130,10 @@ function Game() {
             <div><Loader /></div> 
             :
           <div className="room-info-inner">
-            <h1 className="game-title">{gameData.title}</h1>
-            <p className="game-description">{gameData.description}</p>
-            </div> 
+          <h1 className="game-title">{roomInfo[gameData.room.id].title}</h1>
+          <p className="game-description">{roomInfo[gameData.room.id].description}</p>
+          </div> 
+          
           }
         </div>
         <div className="controls">
