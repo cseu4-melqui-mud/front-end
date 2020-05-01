@@ -39,6 +39,12 @@ function Game(props) {
   useEffect(() => {
     document.addEventListener('keypress', handleKeyPress);
     setLoadingMap(true)
+    
+    setTimeout(() => {
+      if (document.querySelectorAll("#character").length > 1) {
+        document.querySelector("#character").classList.add("invisible")
+      }
+    }, 300)
 
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/adv/rooms/`, axiosConfig)
@@ -82,7 +88,6 @@ function Game(props) {
   const move = (e) => {
     e.preventDefault();
     setLoading(true)
-    console.log("mapRoom", mapRooms);
     let direction = e.target.name;
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/adv/move/`, { direction: direction }, axiosConfig)
       .then((res) => {
@@ -119,6 +124,10 @@ function Game(props) {
   if (!gameData.room || Object.keys(roomInfo).length === 0) {
     return null
   }
+
+  if (document.querySelectorAll("#character").length > 1) {
+    document.querySelector("#character").classList.add("invisible")
+  }
   return (
     <div className="game">
       {error ? <Alert /> : null}
@@ -134,18 +143,22 @@ function Game(props) {
                     <div key={`${y}_${x}`} className={`room r${room}${(gameData.room.id === room ? " player" : '')}`}>
                       <img src="map/room1.png" width="100%" alt={'Room ' + room} />
                       {showRoomDirections(roomInfo[room], x, y)}
+                      {gameData.room.id === room ? <img src="map/characterIdle.gif" id="character" alt="charactermodel" /> : null}
                     </div>)
                 } else if (roomData[room] === 2) {
                   return (
                     <div key={`${y}_${x}`} className={`room r${room}${(gameData.room.id === room ? " player" : '')}`}>
                       <img src={'map/room2_' + (roomInfo[room].x === x ? 'left' : 'right') + '.png'} width="100%" alt={'Room ' + room} />
                       {showRoomDirections(roomInfo[room], x, y)}
+                      {gameData.room.id === room ? <img src="map/characterIdle.gif" id="character" alt="charactermodel"/> : null}
                     </div>)
                 } else if (roomData[room] === 3) {
                   return (
                     <div key={`${y}_${x}`} className={`room r${room}${(gameData.room.id === room ? " player" : '')}`}>
                       <img src={'map/room3_' + (roomInfo[room].y === y ? 'top' : 'bottom') + '.png'} width="100%" alt={'Room ' + room} />
                       {showRoomDirections(roomInfo[room], x, y)}
+                      {gameData.room.id === room ? <img src="map/characterIdle.gif" id="character" alt="charactermodel"/> : null}
+                      
                     </div>)
                 }
               })

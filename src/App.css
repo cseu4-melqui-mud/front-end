@@ -211,3 +211,7 @@ html {
 .logout-button {
   float: right;
 }
+
+.invisible {
+  opacity: 0
+}
