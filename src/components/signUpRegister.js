@@ -117,7 +117,7 @@ export default function SignInSide(props) {
           console.log(err);
         })
     } else {
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}/login/`, formValues, axiosConfig) 
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/login/`, {username: formValues.username, password: formValues.password}, axiosConfig) 
         .then((res) => {
             localStorage.setItem('token', res.data.key)
             window.location.reload()
@@ -174,7 +174,7 @@ const handleChange = (e) => {
                 required
                 fullWidth
                 name="password1"
-                label="Password1"
+                label="Password"
                 type="password"
                 value={formValues.password1}
                 onChange={handleChange}
@@ -187,7 +187,7 @@ const handleChange = (e) => {
                 required
                 fullWidth
                 name="password2"
-                label="Password2"
+                label="Confirm Password"
                 type="password"
                 value={formValues.password2}
                 onChange={handleChange}
@@ -208,11 +208,21 @@ const handleChange = (e) => {
                 id="password"
                 autoComplete="current-password"
               />}
-
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            {signUpToggle ? 
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign Up
+            </Button>
+            :
             <Button
               type="submit"
               fullWidth
@@ -222,6 +232,8 @@ const handleChange = (e) => {
             >
               Sign In
             </Button>
+            }
+
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
