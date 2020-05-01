@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '30%',
     position: "absolute",
+    top: "20px",
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
